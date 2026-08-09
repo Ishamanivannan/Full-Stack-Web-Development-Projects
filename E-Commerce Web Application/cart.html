@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+</head>
+<body>
+    <h1>Your Cart</h1>
+
+    <button onclick="checkout()">Checkout</button>
+
+    <script>
+        function checkout(){
+            fetch("http://localhost:5000/checkout",{
+                method:"POST"
+            })
+            .then(res=>res.json())
+            .then(data=>alert(data.message));
+        }
+    </script>
+</body>
+</html>
