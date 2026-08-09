@@ -1,0 +1,52 @@
+let tasks = JSON.parse(localStorage.getItem(tasks))  [];
+
+displayTasks();
+
+function addTask() {
+    let taskInput = document.getElementById(taskInput);
+    let taskText = taskInput.value;
+
+    if(taskText === ) {
+        alert(Please enter a task);
+        return;
+    }
+
+    tasks.push(taskText);
+    saveTasks();
+    displayTasks();
+    taskInput.value = ;
+}
+
+function displayTasks() {
+    let taskList = document.getElementById(taskList);
+    taskList.innerHTML = ;
+
+    tasks.forEach((task, index) = {
+        taskList.innerHTML += `
+        li
+            ${task}
+            button onclick=editTask(${index})Editbutton
+            button onclick=deleteTask(${index})Deletebutton
+        li`;
+    });
+}
+
+function editTask(index) {
+    let newTask = prompt(Edit Task, tasks[index]);
+
+    if(newTask !== null && newTask !== ) {
+        tasks[index] = newTask;
+        saveTasks();
+        displayTasks();
+    }
+}
+
+function deleteTask(index) {
+    tasks.splice(index, 1);
+    saveTasks();
+    displayTasks();
+}
+
+function saveTasks() {
+    localStorage.setItem(tasks, JSON.stringify(tasks));
+}
